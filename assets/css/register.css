@@ -1,0 +1,192 @@
+/* Fuente y fondo */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #e6f7e6, #ffffff); /* verde muy suave a blanco */
+    margin: 0;
+}
+
+/* Header */
+header {
+    width: 100%;
+    display: block;
+    background: #27ae60; /* verde principal */
+    color: white;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0 0 10px 0;
+}
+
+header nav a {
+    margin: 0 10px;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+header nav a:hover {
+    text-decoration: underline;
+}
+
+/* Contenedor central */
+.container {
+    margin: 40px auto;
+    max-width: 420px;
+    background: white;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+}
+
+/* Títulos y texto */
+h2 {
+    text-align: center;
+    color: #27ae60; /* verde principal */
+    margin-bottom: 25px;
+}
+
+p {
+    color: #2c3e50; /* texto oscuro */
+    margin: 10px 0;
+    font-weight: 500;
+}
+
+label {
+    font-weight: 600;
+    display: block;
+    margin-bottom: 5px;
+    color: #2c3e50; /* texto oscuro */
+}
+
+/* Inputs y select */
+input, select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #27ae60; /* verde borde */
+    border-radius: 8px;
+    margin-bottom: 15px;
+    transition: all 0.3s ease;
+}
+
+input:focus, select:focus {
+    border-color: #2ecc71; /* verde más brillante */
+    outline: none;
+    box-shadow: 0 0 5px rgba(39, 174, 96, 0.3);
+}
+
+/* Botones */
+button {
+    width: 100%;
+    padding: 12px;
+    background: #27ae60; /* verde principal */
+    border: none;
+    color: white;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+    margin-top: 10px;
+}
+
+button:hover {
+    background: #2ecc71; /* verde más claro al hover */
+    transform: scale(1.02);
+}
+
+/* Mensajes de estado */
+.error, .success {
+    margin-bottom: 20px;
+    padding: 10px 15px;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.error {
+    background: #ffe6e6; /* fondo rosa muy suave */
+    border-left: 5px solid #e74c3c;
+    color: #c0392b;
+}
+
+.success {
+    background: #e6ffe6; /* verde muy suave */
+    border-left: 5px solid #27ae60;
+    color: #27ae60;
+}
+
+.error:hover, .success:hover {
+    transform: scale(1.03);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+
+/* Listas */
+ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+/* Footer */
+footer {
+    background: #27ae60; /* verde principal */
+    color: white;
+    text-align: center;
+    padding: 20px 10px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+footer p {
+    margin: 5px 0;
+}
+
+footer a {
+    color: #ffffff; /* blanco para enlaces */
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: #2ecc71; /* verde más claro al pasar el ratón */
+    text-decoration: underline;
+}
+
+/* Específico para profile.php */
+.profile-info p {
+    font-size: 15px;
+    margin: 8px 0;
+}
+
+.profile-info strong {
+    color: #27ae60;
+}
+/* Usuario logueado en el header */
+.user-menu {
+    display: inline-block;
+    background: rgba(255,255,255,0.1); /* leve fondo semi-transparente */
+    padding: 5px 12px;
+    margin-right: 10px;
+    border-radius: 8px;
+    transition: background 0.3s ease;
+}
+
+.user-menu a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.user-menu:hover {
+    background: rgba(255,255,255,0.25);
+}

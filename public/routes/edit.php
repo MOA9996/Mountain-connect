@@ -2,19 +2,8 @@
 session_start();
 include '../../includes/header.php';
 
-// Verificar ID recibido
-if (!isset($_GET['id'])) {
-    echo "ID no proporcionado.";
-    exit;
-}
 
 $id = $_GET['id'];
-
-// Verificar que exista la ruta en sesión
-if (!isset($_SESSION['rutas'][$id])) {
-    echo "Ruta no encontrada.";
-    exit;
-}
 
 $ruta = $_SESSION['rutas'][$id];
 
@@ -22,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $id = $_POST['id'];
 
-    // Actualizar datos en sesión
+    // actaulizamos los datos de la ruta 
     $_SESSION['rutas'][$id] = [
         'id' => $id,
         'tipo' => $_POST['tipo'],
@@ -36,10 +25,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'nvl_fis' => $_POST['nvl_fis'],
         'descripcion' => $_POST['descripcion'],
         'epoca' => $_POST['epoca'] ?? [],
-        'imagenes' => $_SESSION['rutas'][$id]['imagenes'] // mantener imágenes existentes
+        'imagenes' => $_SESSION['rutas'][$id]['imagenes']   
     ];
 
-    // 🔥 Redirigir de vuelta al listado del tipo correcto
+    // redirigimos al list.php del tipo correspondiente d e ruta 
     header("Location: list.php?type=" . urlencode($_POST['tipo']));
     exit;
 }

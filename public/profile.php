@@ -1,20 +1,21 @@
 <?php
 session_start();
 
-// Comprobar sesión
+// en caso de no existir una sesión iniciada, te llevará a la página de loguin, no dejando acceder a profile.php
 if (!isset($_SESSION['usuario'])) {
     header("Location: login.php");
     exit;
 }
 
-$usuario = &$_SESSION['usuario'];       // Referencia para modificar si hace falta
+$usuario = &$_SESSION['usuario'];       
 $rutas = $_SESSION['rutas'] ?? [];      // Rutas creadas por el usuario
 
-$modo_editar = isset($_GET['edit']);    // ¿Está en modo edición?
+// en caso de introducir el parámetro edit se irá al modo edición
+$modo_editar = isset($_GET['edit']);    
 
 $mensaje = "";
 
-// ---- PROCESAR EDICIÓN ---- //
+// página alternativa de edición de los datos del perfil
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['actualizar_perfil'])) {
 
     $usuario['email']        = trim($_POST['email']);
@@ -24,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['actualizar_perfil']))
 
     $mensaje = "Datos actualizados correctamente.";
 
-    // Volver al modo visualización
+    // volver al modo normal del perfil
     $modo_editar = false;
 }
 ?>
@@ -48,9 +49,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['actualizar_perfil']))
     <?php endif; ?>
 
 
-    <!-- =======================
-          MODO VISUALIZACIÓN
-         ======================= -->
     <?php if (!$modo_editar): ?>
 
         <p><strong>Email:</strong> <?php echo htmlspecialchars($usuario['email']); ?></p>
@@ -80,9 +78,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['actualizar_perfil']))
         <?php endif; ?>
 
 
-    <!-- =======================
-          MODO EDICIÓN
-         ======================= -->
     <?php else: ?>
 
         <h3>Editar tu información</h3>
@@ -92,19 +87,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['actualizar_perfil']))
 
             <label>Email:</label>
             <input type="email" name="email"
-                   value="<?php echo htmlspecialchars($usuario['email']); ?>" required>
+                value="<?php echo htmlspecialchars($usuario['email']); ?>" required>
 
             <label>Nivel de experiencia:</label>
             <input type="text" name="nivel"
-                   value="<?php echo htmlspecialchars($usuario['nivel']); ?>">
+                value="<?php echo htmlspecialchars($usuario['nivel']); ?>">
 
             <label>Especialidad:</label>
             <input type="text" name="especialidad"
-                   value="<?php echo htmlspecialchars($usuario['especialidad']); ?>">
+                value="<?php echo htmlspecialchars($usuario['especialidad']); ?>">
 
             <label>Provincia:</label>
             <input type="text" name="provincia"
-                   value="<?php echo htmlspecialchars($usuario['provincia']); ?>">
+                value="<?php echo htmlspecialchars($usuario['provincia']); ?>">
 
             <button type="submit">Guardar</button>
             <button type="button" onclick="window.location.href='profile.php'">

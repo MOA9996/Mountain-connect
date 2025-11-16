@@ -1,6 +1,6 @@
 <?php
-session_start(); // siempre al inicio
-include_once('../config/config.php'); // tu configuración
+session_start(); 
+include_once('../config/config.php');
 ?>
 
 <!DOCTYPE html>
@@ -14,23 +14,26 @@ include_once('../config/config.php'); // tu configuración
 <body>
 
 
-<?php include('../includes/header.php'); ?> <!-- tu header -->
+<?php include('../includes/header.php'); ?> 
 
 <main>
     
         <?php if(isset($_SESSION['usuario'])): ?>
-                <!-- Contenido para usuarios logueados -->
+                
                 <div class="container">
             <label>
             <a href="/mountain-connect/public/routes/list.php?type=ruta">Rutas</a>
+            <!-- A los usuarios logueados les llevará al list.php, añadiendo en la url el parámetro de que nos muestre la lista de rutas tipo ruta
+            ( misma estructura para el resto de tipos de rutas)-->
             </label>
             <img src="/mountain-connect/assets/images/ruta.png" width="150" height="100" alt="Ruta" >
         </div>
             <?php else: ?>
-                <!-- Contenido para visitantes no logueados -->
+                
                 <div class="container">
             <label>
             <a href="register.php">Rutas</a>
+            <!-- A los usuarios no logueados les llevará a la página de registro ( misma estructura para el resto de tipos de rutas) -->
             </label>
             <img src="/mountain-connect/assets/images/ruta.png" width="150" height="100" alt="Ruta" >
         </div>
@@ -45,7 +48,7 @@ include_once('../config/config.php'); // tu configuración
     </div>
 
         <?php else: ?>
-            <!-- Contenido para visitantes no logueados -->
+            
             <div class="container">
         <label>
         <a href="register.php">Escalada</a>
@@ -63,7 +66,7 @@ include_once('../config/config.php'); // tu configuración
     </div>
 
         <?php else: ?>
-            <!-- Contenido para visitantes no logueados -->
+            
             <div class="container">
         <label>
         <a href="register.php">Ferratas</a>

@@ -2,18 +2,18 @@
 session_start();
 include '../../includes/header.php';
 
-// --- FILTRO POR TIPO --- //
+
 $type = $_GET['type'] ?? 'ruta';
 $type = strtolower($type);
 
-// --- ASIGNAR ID A CADA RUTA (ÍNDICE DE SESIÓN) --- //
+// asigna un id a cada ruta 
 if (!empty($_SESSION['rutas'])) {
     foreach ($_SESSION['rutas'] as $i => $r) {
         $_SESSION['rutas'][$i]['id'] = $i;
     }
 }
 
-// --- FILTRO --- //
+// Filtro del tipo de ruta
 $filtradas = [];
 if (!empty($_SESSION['rutas'])) {
     foreach ($_SESSION['rutas'] as $ruta) {
@@ -122,7 +122,6 @@ $titulo = ucfirst($type);
 
 <div class="container">
 
-    <!-- Selector de tipo -->
     <div class="tipo-selector">
         <label for="tipo">Tipo:</label>
         <select id="tipo" name="tipo" onchange="cambiarTipo(this.value)">
@@ -179,21 +178,21 @@ $titulo = ucfirst($type);
                     <div class="imagenes">
                         <?php foreach ($ruta['imagenes'] as $img): ?>
                             <img src="/mountain-connect/uploads/photos/<?php echo htmlspecialchars($img); ?>" 
-                                 alt="Imagen de <?php echo htmlspecialchars($ruta['nombre']); ?>">
+                                alt="Imagen de <?php echo htmlspecialchars($ruta['nombre']); ?>">
                         <?php endforeach; ?>
                     </div>
                 <?php else: ?>
                     <p><em>No hay imágenes</em></p>
                 <?php endif; ?>
 
-                <!-- BOTONES DE EDITAR Y ELIMINAR -->
+                
                 <div style="margin-top: 15px; display:flex; gap:10px;">
                     <a href="edit.php?id=<?php echo $ruta['id']; ?>" class="btn-editar">Editar</a>
 
                     <a href="delete.php?id=<?php echo $ruta['id']; ?>" 
-                       class="btn-eliminar"
-                       onclick="return confirm('¿Seguro que deseas eliminar esta ruta?');">
-                       Eliminar
+                        class="btn-eliminar"
+                        onclick="return confirm('¿Seguro que deseas eliminar esta ruta?');">
+                    Eliminar
                     </a>
                 </div>
 

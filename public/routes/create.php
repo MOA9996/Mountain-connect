@@ -4,24 +4,24 @@ session_start();
 //  Carpeta donde se guardarán las imágenes
 $upload_dir = __DIR__ . '/../../uploads/photos/';
 
-// Crear carpeta si no existe
+// Creamos una carpeta si no existe
 if (!is_dir($upload_dir)) {
     mkdir($upload_dir, 0755, true);
 }
-
+// array donde se gaurdaran los posibles errores 
 $errors = [];
 $success = "";
 
-// Inicializar array de rutas en sesión
+//  array de rutas en de la sesión
 if (!isset($_SESSION['rutas'])) {
     $_SESSION['rutas'] = [];
 }
 
-//  Obtener el tipo desde la URL (por ejemplo ?type=ruta / escalada / ferrata)
+//  obtenemos el tipo de ruta desde el parámetro de la url
 $tipo_url = $_GET['type'] ?? '';
 $tipo_url = strtolower($tipo_url);
 
-// Procesar formulario
+// proesamiento del formulario html
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nombre = trim($_POST["nombre"] ?? "");
     $dificultad = $_POST["dificultad"] ?? "";
@@ -48,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($nvl_fis)) $errors[] = "Selecciona un nivel físico.";
     if (empty($tipo)) $errors[] = "Selecciona un tipo de ruta.";
 
-    //  Validación y guardado de imágenes
+    //  Validación y guardado de las imágenes
     $allowed_types = ['image/jpeg', 'image/jpg', 'image/png'];
     $max_size = 2 * 1024 * 1024; // 2MB
     $uploaded_images = $_FILES['imagenes'] ?? null;
@@ -90,11 +90,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
-    // ✅ Guardar ruta si no hay errores
+    // en caso de no haber errores, se gaurdará la ruta 
     if (empty($errors)) {
         $ruta = [
             'nombre' => $nombre,
-            'tipo' => $tipo, // 👈 ahora sí se guarda el tipo para que list.php pueda filtrar
+            'tipo' => $tipo, // se guarda el tipo para que se pueda filtrar en el list.php
             'dificultad' => $dificultad,
             'distancia' => $distancia,
             'desnivel' => $desnivel,
@@ -113,7 +113,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_POST = [];
         $filesArray = [];
 
-        // 🔁 Redirigir al listado del tipo correspondiente
+        // esto redirige al list del tipo correspondiente de ruta
         header("Location: /mountain-connect/public/routes/list.php?type=$tipo");
         exit;
     }

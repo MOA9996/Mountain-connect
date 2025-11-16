@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+// array de sesión de usuarios
 $usuarios = $_SESSION['usuarios'] ?? [];
 $error = "";
 
@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $error = "Por favor, complete todos los campos.";
     } else {
         $usuarioEncontrado = null;
-
+        // recorre en el array de usuarios un usuario que concuerde en nombre y contraseña por el introducido por el usuairo
         foreach ($usuarios as $u) {
             if (($u['username'] === $login || $u['email'] === $login) && $u['password'] === $password) {
                 $usuarioEncontrado = $u;

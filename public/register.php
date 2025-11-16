@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $especialidad = $_POST["especialidad"] ?? "";
     $provincia = $_POST["provincia"] ?? "";
 
-    // Validaciones
+    // validaciones
     if (empty($username) || empty($email) || empty($password) || empty($confirm_password) ||
         empty($nivel) || empty($especialidad) || empty($provincia)) {
         $errors[] = "Todos los campos son obligatorios.";
@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $errors[] = "La contraseña debe tener al menos 6 caracteres.";
     }
 
-    // Evitar duplicados
+    // salta error en caso de usuario duplicado
     foreach ($_SESSION['usuarios'] as $u) {
         if ($u['username'] === $username) {
             $errors[] = "El nombre de usuario ya está en uso.";
@@ -48,11 +48,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if (empty($errors)) {
-        // Guardar usuario en la lista de usuarios
+        // si está vacío el array de errores, se guarda al usuario
         $nuevo_usuario = [
             "username" => $username,
             "email" => $email,
-            "password" => $password, // en producción, usar password_hash
+            "password" => $password, 
             "nivel" => $nivel,
             "especialidad" => $especialidad,
             "provincia" => $provincia
@@ -60,7 +60,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $_SESSION['usuarios'][] = $nuevo_usuario;
 
-        // Loguear automáticamente al usuario (opcional)
         $_SESSION['usuario'] = $nuevo_usuario;
 
         $success = "¡Registro completado con éxito!";

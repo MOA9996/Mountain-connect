@@ -4,10 +4,7 @@ session_start();
 //  Carpeta donde se guardarán las imágenes
 $upload_dir = __DIR__ . '/../../uploads/photos/';
 
-// Creamos una carpeta si no existe
-if (!is_dir($upload_dir)) {
-    mkdir($upload_dir, 0755, true);
-}
+
 // array donde se gaurdaran los posibles errores 
 $errors = [];
 $success = "";
@@ -109,7 +106,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $_SESSION['rutas'][] = $ruta;
 
-        $success = "✅ Ruta registrada correctamente.";
+        $success = " Ruta registrada correctamente.";
         $_POST = [];
         $filesArray = [];
 
